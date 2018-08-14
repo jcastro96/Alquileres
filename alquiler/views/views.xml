@@ -1,0 +1,130 @@
+<odoo>
+  <!-- form view locales-->
+  <record id ="locales_view" model = "ir.iu.view">
+    <field name = "name">locales.view</field>
+    <field name = "model">alquiler</field>
+    <field name = "arch" type ="xml">
+       <form string="form alquiler">
+         <sheet>
+         <group>
+           <field name="numero_local"></field>
+           <field name = "metros_c"></field>
+            <field name = "metros_c"></field>
+           <field name = "medidor_a"></field>
+           <field name = "sala"></field>
+         </group>
+         </sheet>
+       </form>
+  <!-- form view pisos-->
+  <record id ="pisos_view" model = "ir.iu.view">
+    <field name = "name">pisos.view</field>
+    <field name = "model">pisos</field>
+    <field name = "arch" type ="xml">
+       <form string="form pisos">
+         <sheet>
+         <group>
+           <field name="numero"></field>
+           <field name = "tamaño"></field>
+            <field name = "cant_locales"></field>
+           <field name = "edificio_name"></field>
+         </group>
+         </sheet>
+       </form>
+  <!-- tree view pisos-->
+  <record id ="tree_pisos_view" model = "ir.iu.view">
+    <field name = "name">tree.pisos.view</field>
+    <field name = "model">pisos</field>
+    <field name = "arch" type ="xml">
+       <form string="form pisos">
+         <sheet>
+         <group>
+           <field name="numero"></field>
+           <field name = "tamaño"></field>
+            <field name = "cant_locales"></field>
+           <field name = "edificio_name"></field>
+         </group>
+         </sheet>
+       </form>
+     <!-- form view edificios-->
+    <record id ="edificios_view" model = "ir.iu.view">
+    <field name = "name">edificios.view</field>
+    <field name = "model">edificios</field>
+    <field name = "arch" type ="xml">
+       <form string="form edificios">
+         <sheet>
+         <group>
+           <field name="nombre"></field>
+           <field name = "direccion"></field>
+            <field name = "area_terreno"></field>
+           <field name = "area_construida"></field>
+           <field name = "pisos"></field>
+           <field name = "valor_real"></field>
+           <field name = "valor_fiscal"></field>
+         </group>
+         </sheet>
+       </form>
+    </field>
+  </record>
+  <!-- tree view locales -->
+  <record id ="locales_tree_view" model = "ir.iu.view">
+    <field name = "name">locales.tree.view</field>
+    <field name = "model">alquiler</field>
+    <field name = "arch" type ="xml">
+       <form string="form tree view">
+         <sheet>
+         <group>
+           <field name = "numero_local"></field>
+           <field name = "medidor_c"></field>
+           <field name = "medidor_a"></field>
+           <field name = "sala"></field>
+         </group>
+         </sheet>
+       </form>
+    </field>
+  </record>
+
+  <!-- tree view edificios -->
+  <record id ="edificios_tree_view" model = "ir.iu.view">
+    <field name = "name">edificios.tree.view</field>
+    <field name = "model">edificios</field>
+    <field name = "arch" type ="xml">
+       <form string="form tree view">
+         <sheet>
+         <group>
+           <field name = "nombre"></field>
+           <field name = "direccion"></field>
+           <field name = "area_terreno"></field>
+           <field name = "area_constuida"></field>
+         </group>
+         </sheet>
+       </form>
+    </field>
+  </record>
+    <!--action alquiler-->
+    <record id="action_alquiler" model="ir.actions.act_window">
+      <field name ="numero_local">action.alquiler</field>
+      <field name = "type">ir.actions.act_window</field>
+      <field name ="res_model">alquiler</field>
+      <field name ="view_model">tree,form</field>
+    </record>
+    <!--action pisos-->
+  <record id="action_pisos" model="ir.actions.act_window">
+      <field name ="numero">action.pisos</field>
+      <field name = "type">ir.actions.act_window</field>
+      <field name ="res_model">pisos</field>
+      <field name ="view_model">tree,form</field>
+    </record>
+
+   <!--action edificio-->
+  <record id="action_edificio" model="ir.actions.act_window">
+      <field name ="nombre">action.edificio</field>
+      <field name = "type">ir.actions.act_window</field>
+      <field name ="res_model">edificio</field>
+      <field name ="view_model">tree,form</field>
+    </record>
+
+ <menuintem id = "alquiler_menu_root" name = "Alquileres" sequences = "1"></menuintem>
+  <menuintem id = "edificios_menu_category action" name = "Edificios" parent= "alquiler_menu_root"sequences = "1" action ="actions edificio"></menuintem>
+  <menuintem id = "pisos_menu_category action" name = "pisos" parent= "edificios_menu_category_action"_sequences = "1" action="action pisos"></menuintem>
+  <menuintem id = "alquiler_menu_category action" name = "locales" parent= "pisos_menu_category_action"sequences = "1" action="action alquiler"></menuintem>
+</odoo>
